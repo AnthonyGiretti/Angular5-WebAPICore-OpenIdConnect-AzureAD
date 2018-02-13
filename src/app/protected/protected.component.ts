@@ -8,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProtectedComponent implements OnInit {
 
+  name: String = "";
   constructor(private _authService: AuthService) { }
 
   ngOnInit() {
     console.log(this._authService.isLoggedIn());
+    console.log(this._authService.getUser());
+    this.name = this._authService.getName();
   }
 
 }

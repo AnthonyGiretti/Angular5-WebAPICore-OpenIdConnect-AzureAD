@@ -12,13 +12,9 @@ export class AuthCallbackComponent implements OnInit {
   constructor(private _router:Router, private _authService: AuthService) { }
 
   ngOnInit() {
-    this._authService.completeAuthentication();
-    console.log(this._authService.isLoggedIn());
-    console.log(this._authService.getUser());
-    console.log(this._authService.getClaims());
-
-    this._router.navigate(["/protected"]);
-
+    this._authService.completeAuthentication().then(() => {
+      this._router.navigate(["/protected"]);
+    });
   }
 
 }
