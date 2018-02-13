@@ -11,7 +11,7 @@
         "assets",
         "favicon.ico",
         "keys.json",
-        "wellknown.json"
+        "web.config"
       ],
       "index": "index.html",
       "main": "main.ts",
