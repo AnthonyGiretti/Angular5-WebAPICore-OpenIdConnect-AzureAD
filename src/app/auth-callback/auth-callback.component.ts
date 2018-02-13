@@ -13,12 +13,9 @@ export class AuthCallbackComponent implements OnInit {
 
   ngOnInit() {
     this._authService.completeAuthentication().then(() => {
-
       this._zone.run(
         () => this._router.navigate(['/protected'])
       );
-      //this._router.navigate(["/protected"]);
-      //window.location.href = "https://demoazureadconnectangular5.azurewebsites.net/protected";
     });
   }
 

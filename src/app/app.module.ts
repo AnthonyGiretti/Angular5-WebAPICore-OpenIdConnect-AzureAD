@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 import { ProtectedComponent } from './protected/protected.component';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
+import { SilentRefreshComponent } from './silentrefresh/silentrefresh.component';
 
 const routes: Routes = [
     {
@@ -24,13 +25,19 @@ const routes: Routes = [
       path: 'auth-callback',
       component: AuthCallbackComponent
     }
+    ,
+    {
+      path: 'silentrefresh',
+      component: SilentRefreshComponent
+    }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     ProtectedComponent,
-    AuthCallbackComponent
+    AuthCallbackComponent,
+    SilentRefreshComponent
   ],
   imports: [
     BrowserModule,

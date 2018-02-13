@@ -11,7 +11,9 @@
         "assets",
         "favicon.ico",
         "keys.json",
-        "web.config"
+        "web.config",
+        "silent-refresh.html",
+        "oidc-client.min.js"
       ],
       "index": "index.html",
       "main": "main.ts",
