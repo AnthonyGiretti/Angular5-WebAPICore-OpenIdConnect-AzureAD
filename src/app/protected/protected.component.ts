@@ -15,6 +15,8 @@ export class ProtectedComponent implements OnInit {
     console.log(this._authService.isLoggedIn());
     console.log(this._authService.getUser());
     this.name = this._authService.getName();
+
+    this._authService.subscribeevents();
   }
 
 }

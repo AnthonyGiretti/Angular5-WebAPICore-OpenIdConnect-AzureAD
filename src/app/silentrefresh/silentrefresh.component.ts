@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserManager } from 'oidc-client';
 import { getClientSettings } from '../openIdConnectConfig';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-silentrefresh',
@@ -9,24 +10,14 @@ import { getClientSettings } from '../openIdConnectConfig';
 })
 export class SilentRefreshComponent implements OnInit {
 
-  private _manager = new UserManager(getClientSettings());
-
-  constructor() {
-  }
-
-  ngOnInit() {
+  
+  constructor(private _authService:AuthService) {
     
   }
 
-  public refresh(): void
-  {
-    console.log("start refresh");
-    this._manager.signinSilentCallback()
-      .then(data => {console.log(data)})
-      .catch((err) => {
-          console.log(err);
-      });
-      console.log("end refresh");
+  ngOnInit() {
+    this._authService.refreshCallBack();
   }
+
 
 }

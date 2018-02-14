@@ -9,14 +9,37 @@ export class AuthService {
   private _user: User = null;
 
   constructor() {
-    this._manager.getUser().then(user => {
-      this._user = user;
-    });
+
+    // this._manager.getUser().then(user => {
+    //   var token = this.parseJwt(user.id_token);
+    //   user.expires_at = token.exp;
+    //   console.log(user.expires_at);
+    //   this._user = user;
+    // });
 
     this._manager.events.addUserLoaded(user => {
+      var token = this.parseJwt(user.id_token);
+      user.expires_at = token.exp;
+      console.log(user.expires_at);
       this._user = user;
+      var that = this;
+      this.subscribeevents();
     });
 
+    //
+    
+    
+  }
+
+  public isLoggedIn(): boolean {
+    return this._user != null && !this._user.expired;
+  }
+
+  public getClaims(): any {
+    return this._user.profile;
+  }
+
+  public subscribeevents() :void {
     this._manager.events.addSilentRenewError(() => {
       console.log("error SilentRenew");
     });
@@ -28,15 +51,17 @@ export class AuthService {
     this._manager.events.addAccessTokenExpired(() => {
       console.log("access token expired");
     });
-
   }
 
-  public isLoggedIn(): boolean {
-    return this._user != null && !this._user.expired;
-  }
-
-  public getClaims(): any {
-    return this._user.profile;
+  public refreshCallBack(): void
+  {
+    console.log("start refresh callback");
+    this._manager.signinSilentCallback()
+      .then(data => {console.log("suucess callback")})
+      .catch(err => {
+          console.log("err callback");
+      });
+      console.log("end refresh callback");
   }
 
   getUser(): any {
@@ -62,4 +87,17 @@ export class AuthService {
 
     
   }
+
+   parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  };
+
+
+  public Call()
+  {
+    //this._http.
+  }
+
 }

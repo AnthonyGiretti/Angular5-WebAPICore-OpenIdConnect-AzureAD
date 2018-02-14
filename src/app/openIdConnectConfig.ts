@@ -13,7 +13,9 @@ export function getClientSettings(): UserManagerSettings {
       filterProtocolClaims: true,
       loadUserInfo: true,
       automaticSilentRenew: true,
-      silent_redirect_uri: 'http://localhost:4200/assets/silent-refresh.html',
+      clockSkew: 0,
+      accessTokenExpiringNotificationTime: 570,
+      silent_redirect_uri: 'http://localhost:4200/silent-refresh.html',
       metadata: {
         issuer: "https://sts.windows.net/136544d9-038e-4646-afff-10accb370679/",
         authorization_endpoint: "https://login.microsoftonline.com/136544d9-038e-4646-afff-10accb370679/oauth2/authorize",
