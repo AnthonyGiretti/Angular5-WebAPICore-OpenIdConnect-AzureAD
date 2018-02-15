@@ -7,8 +7,8 @@ import { Observable } from 'rxjs/Observable';
 const config: adal.Config = {
   tenant: '136544d9-038e-4646-afff-10accb370679',
   clientId: '257b6c36-1168-4aac-be93-6f2cd81cec43',
-  redirectUri: "https://demoazureadconnectangular5.azurewebsites.net/auth-callback",
-  postLogoutRedirectUri: "https://demoazureadconnectangular5.azurewebsites.net"
+  redirectUri: "http://localhost:4200/auth-callback",
+  postLogoutRedirectUri: "https://localhost:4200"
 }
 
 @Injectable()
@@ -17,7 +17,7 @@ export class AuthService {
   private _user = null;
 
   constructor(private _adal: Adal5Service) {
-    
+    this._adal.init(config);
   }
 
   public isLoggedIn(): boolean {
@@ -29,7 +29,6 @@ export class AuthService {
   }
 
   startAuthentication(): any {
-    this._adal.init(config);
     this._adal.login();
   }
 
@@ -44,9 +43,8 @@ export class AuthService {
     this._adal.handleWindowCallback();
     return this._adal.getUser().subscribe(user => {
       this._user = user;
-      console.log(user);
+      console.log(this._adal.userInfo.token);
       var expireIn = user.profile.exp - new Date().getTime();
-      //redirectCallBack();
     });
   }
 }
