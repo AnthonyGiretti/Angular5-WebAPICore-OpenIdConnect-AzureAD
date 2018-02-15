@@ -10,10 +10,7 @@
       "assets": [
         "assets",
         "favicon.ico",
-        "keys.json",
-        "web.config",
-        "silent-refresh.html",
-        "oidc-client.min.js"
+        "web.config"
       ],
       "index": "index.html",
       "main": "main.ts",

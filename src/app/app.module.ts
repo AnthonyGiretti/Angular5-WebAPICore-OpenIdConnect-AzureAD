@@ -9,7 +9,8 @@ import { AppComponent } from './app.component';
 
 import { ProtectedComponent } from './protected/protected.component';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
-import { SilentRefreshComponent } from './silentrefresh/silentrefresh.component';
+import { Adal5Service, Adal5HTTPService } from 'adal-angular5';
+import { HttpClient } from '@angular/common/http';
 
 const routes: Routes = [
     {
@@ -25,26 +26,20 @@ const routes: Routes = [
       path: 'auth-callback',
       component: AuthCallbackComponent
     }
-    ,
-    {
-      path: 'silentrefresh',
-      component: SilentRefreshComponent
-    }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     ProtectedComponent,
-    AuthCallbackComponent,
-    SilentRefreshComponent
+    AuthCallbackComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule],
-  providers: [AuthGuardService, AuthService],
+  providers: [AuthGuardService, AuthService, Adal5Service,{ provide: Adal5HTTPService, useFactory: Adal5HTTPService.factory, deps: [HttpClient, Adal5Service] } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

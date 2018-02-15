@@ -1,6 +1,5 @@
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
-import { UserManager, UserManagerSettings, User } from 'oidc-client';
 import { CanActivate } from '@angular/router';
 
 @Injectable()

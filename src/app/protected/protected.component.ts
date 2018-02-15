@@ -12,11 +12,10 @@ export class ProtectedComponent implements OnInit {
   constructor(private _authService: AuthService) { }
 
   ngOnInit() {
-    console.log(this._authService.isLoggedIn());
-    console.log(this._authService.getUser());
     this.name = this._authService.getName();
-
-    this._authService.subscribeevents();
   }
 
+  public signout(): void {
+    this._authService.signout();
+  }
 }

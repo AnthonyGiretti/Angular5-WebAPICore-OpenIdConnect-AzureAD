@@ -14,14 +14,11 @@ export class AuthCallbackComponent implements OnInit {
   ngOnInit() {
 
 
-      console.log(document.location.href);
+    this._authService.completeAuthentication();
 
-
-    this._authService.completeAuthentication().then(() => {
-      this._zone.run(
-        () => this._router.navigate(['/protected'])
-      );
-    });
+    setTimeout(() => {this._zone.run(
+      () => this._router.navigate(['/protected'])
+    );},200);
+    
   }
-
 }
