@@ -8,7 +8,7 @@ const config: adal.Config = {
   tenant: '136544d9-038e-4646-afff-10accb370679',
   clientId: '257b6c36-1168-4aac-be93-6f2cd81cec43',
   redirectUri: "http://localhost:4200/auth-callback",
-  postLogoutRedirectUri: "https://localhost:4200"
+  postLogoutRedirectUri: "http://localhost:4200"
 }
 
 @Injectable()
@@ -45,6 +45,10 @@ export class AuthService {
       this._user = user;
       console.log(this._adal.userInfo.token);
       var expireIn = user.profile.exp - new Date().getTime();
+
+      //autologout after a certain time, because unable to manage refresh token
+      //setTimeout(() => {this.signout()},5000);
+
     });
   }
 }
