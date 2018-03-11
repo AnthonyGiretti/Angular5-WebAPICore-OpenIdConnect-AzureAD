@@ -23,7 +23,7 @@ export class AuthService {
     return this._adal.userInfo.authenticated;
   }
   
-  public signout(): void {
+  public signOut(): void {
     this._adal.logOut();
   }
 
@@ -33,6 +33,10 @@ export class AuthService {
 
   public getName(): string {
     return this._user.profile.name;
+  }
+
+  public getToken(): string {
+    return this._user.userInfo.token;
   }
 
   public completeAuthentication(): void {

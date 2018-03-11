@@ -1,5 +1,6 @@
-import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+
+import { AuthService } from './../services/auth.service';
 
 @Component({
   selector: 'app-protected',
@@ -16,6 +17,6 @@ export class ProtectedComponent implements OnInit {
   }
 
   public signout(): void {
-    this._authService.signout();
+    this._authService.signOut();
   }
 }
