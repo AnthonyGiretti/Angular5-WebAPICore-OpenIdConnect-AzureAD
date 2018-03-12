@@ -1,5 +1,6 @@
+import { HttpModule } from '@angular/http';
 import { Adal5HTTPService, Adal5Service } from 'adal-angular5';
-import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -35,10 +36,11 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule],
-  providers: [AuthGuardService, AuthService, Adal5Service,{ provide: Adal5HTTPService, useFactory: Adal5HTTPService.factory, deps: [HttpClient, Adal5Service] },
+  providers: [HttpClient, AuthGuardService, AuthService, Adal5Service,{ provide: Adal5HTTPService, useFactory: Adal5HTTPService.factory, deps: [HttpClient, Adal5Service] },
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from './../services/auth.service';
@@ -10,10 +11,12 @@ import { AuthService } from './../services/auth.service';
 export class ProtectedComponent implements OnInit {
 
   name: String = "";
-  constructor(private _authService: AuthService) { }
+  data: String = "";
+  constructor(private _authService: AuthService, private _http: HttpClient) { }
 
   ngOnInit() {
     this.name = this._authService.getName();
+    //this._http.get<String>("http://localhost:50586/api/values").subscribe(res => this.data = res);
   }
 
   public signout(): void {

@@ -13,9 +13,9 @@ namespace WebApiJwtBearer.Controllers
         [Authorize]
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public string Get()
         {
-            return new string[] { "value1", "value2" };
+            return "Data got from server";
         }   
     }
 }

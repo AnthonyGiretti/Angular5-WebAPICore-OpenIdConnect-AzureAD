@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   public getToken(): string {
-    return this._user.userInfo.token;
+    return this._user.token;
   }
 
   public completeAuthentication(): void {
