@@ -17,10 +17,14 @@ export class AuthService {
 
   constructor(private _adal: Adal5Service) {
     this._adal.init(this._config);
+
+    if (this.isLoggedIn()) {
+      console.log(`Rechargement de la page, c'est le meme token et il expire dans ${this._expireIn()} secondes`);
+    }
   }
 
   public isLoggedIn(): boolean {
-    return this._adal.userInfo.authenticated;
+    return this._adal.userInfo && this._adal.userInfo.authenticated;
   }
   
   public signOut(): void {
@@ -32,7 +36,7 @@ export class AuthService {
   }
 
   public getName(): string {
-    return this._user.profile.name;
+    return this._adal.userInfo.profile.name;
   }
 
   public getToken(): string {
@@ -41,10 +45,10 @@ export class AuthService {
 
   public completeAuthentication(): void {
     this._adal.handleWindowCallback();
-      this._adal.getUser().subscribe(user => {
-      this._user = user;
-      console.log(this._adal.userInfo);
-      var expireIn = user.profile.exp - new Date().getTime();
-    });
+    console.log(`Authentification OK et le token expire dans ${this._expireIn()} secondes`);
+  }
+
+  private _expireIn(): number {
+    return Math.round(this._adal.userInfo.profile.exp - new Date().getTime() / 1000);
   }
 }
