@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   public getToken(): string {
-    return this._user.token;
+    return this._adal.userInfo.token;
   }
 
   public completeAuthentication(): void {

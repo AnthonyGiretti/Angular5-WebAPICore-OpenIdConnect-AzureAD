@@ -13,9 +13,10 @@ namespace WebApiJwtBearer.Controllers
         [Authorize]
         // GET api/values
         [HttpGet]
-        public string Get()
+        public IActionResult Get()
         {
-            return "Data got from server";
+            var data = new { text = "got data from server" };
+            return this.Ok(data);
         }   
     }
 }

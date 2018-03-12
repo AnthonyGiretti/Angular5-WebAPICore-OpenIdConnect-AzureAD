@@ -16,7 +16,7 @@ export class ProtectedComponent implements OnInit {
 
   ngOnInit() {
     this.name = this._authService.getName();
-    //this._http.get<String>("http://localhost:50586/api/values").subscribe(res => this.data = res);
+    this._http.get<any>("http://localhost:50586/api/values").subscribe(res => this.data =  res.text);
   }
 
   public signout(): void {
