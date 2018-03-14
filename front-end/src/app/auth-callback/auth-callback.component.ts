@@ -13,6 +13,8 @@ export class AuthCallbackComponent implements OnInit {
 
   ngOnInit() {
 
+    var hash = decodeURIComponent(window.location.hash);
+    window.location.hash = hash;
 
     this._authService.completeAuthentication();
 
