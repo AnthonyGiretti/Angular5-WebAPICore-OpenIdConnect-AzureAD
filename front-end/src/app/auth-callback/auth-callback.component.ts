@@ -13,6 +13,7 @@ export class AuthCallbackComponent implements OnInit {
 
   ngOnInit() {
 
+    // Fix to make Angular reads id_token in the hash
     var hash = decodeURIComponent(window.location.hash);
     window.location.hash = hash;
 
