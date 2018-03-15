@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   public isLoggedIn(): boolean {
-    return this._adal.userInfo && this._adal.userInfo.authenticated;
+    return this._adal.userInfo && this._adal.userInfo.authenticated && this._expireIn() > 0;
   }
   
   public signOut(): void {
@@ -40,6 +40,7 @@ export class AuthService {
   }
 
   public getToken(): string {
+    console.log(this._adal.userInfo);
     return this._adal.userInfo.token;
   }
 
