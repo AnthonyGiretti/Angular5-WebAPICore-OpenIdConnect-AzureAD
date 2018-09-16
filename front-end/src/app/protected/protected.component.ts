@@ -12,11 +12,13 @@ export class ProtectedComponent implements OnInit {
 
   name: String = "";
   data: String = "";
+  token: String = "";
   constructor(private _authService: AuthService, private _http: HttpClient) { }
 
   ngOnInit() {
     this.name = this._authService.getName();
-    this._http.get<any>("http://localhost:50586/api/values").subscribe(res => this.data =  res.text);
+    //this._http.get<any>("http://localhost:50586/api/values").subscribe(res => this.data =  res.text);
+    this.token = this._authService.getToken();
   }
 
   public signout(): void {
